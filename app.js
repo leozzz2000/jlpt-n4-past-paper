@@ -258,8 +258,95 @@ const EXAMS = [
         ]
       }
     ]
+  },
+  {
+    id: "2021-07",
+    title: "2021 年 7 月 N4",
+    pageDir: "assets/pages/2021-07",
+    pageCount: 30,
+    answersImages: ["assets/answers/2021-07-answer-01.jpg", "assets/answers/2021-07-answer-02.jpg"],
+    sections: [
+      {
+        id: "vocab",
+        title: "文字・語彙",
+        groups: [
+          { label: "問題1", answers: "2132341", pages: [2, 3] },
+          { label: "問題2", answers: "24321", pages: [3, 4] },
+          { label: "問題3", answers: "33214241", pages: [4, 5] },
+          { label: "問題4", answers: "4134", pages: [5, 6] },
+          { label: "問題5", answers: "4123", pages: [6, 7] }
+        ]
+      },
+      {
+        id: "grammar-reading",
+        title: "文法・讀解",
+        groups: [
+          { label: "文法1", answers: "2334314421241", pages: [8, 9, 10] },
+          { label: "文法2", answers: "2414", pages: [10, 11] },
+          { label: "文法3", answers: "2143", pages: [11, 12] },
+          { label: "讀解1", answers: "324", pages: [13, 14] },
+          { label: "讀解2", answers: "314", pages: [14, 15] },
+          { label: "讀解3", answers: "22", pages: [16, 17] }
+        ]
+      },
+      {
+        id: "listening",
+        title: "聽解",
+        notice: "資料夾有 2021 年 7 月 N4 聽力 MP3；網站暫時顯示聽解卷面圖片並可用答案判分。",
+        groups: [
+          { label: "聽解1", answers: "33232123", pages: [18, 19, 20, 21, 22, 23] },
+          { label: "聽解2", answers: "1231324", pages: [24, 25, 26] },
+          { label: "聽解3", answers: "13212", pages: [27, 28, 29] },
+          { label: "聽解4", answers: "33111221", pages: [30] }
+        ]
+      }
+    ]
+  },
+  {
+    id: "2021-12",
+    title: "2021 年 12 月 N4",
+    pageDir: "assets/pages/2021-12",
+    pageCount: 18,
+    answersImages: ["assets/answers/2021-12-answer-01.jpg", "assets/answers/2021-12-answer-02.jpg"],
+    sections: [
+      {
+        id: "vocab",
+        title: "文字・語彙",
+        groups: [
+          { label: "問題1", answers: "3442321", pages: [8] },
+          { label: "問題2", answers: "43123", pages: [8, 9] },
+          { label: "問題3", answers: "12134324", pages: [9, 10] },
+          { label: "問題4", answers: "2421", pages: [10, 11] },
+          { label: "問題5", answers: "4131", pages: [11] }
+        ]
+      },
+      {
+        id: "grammar-reading",
+        title: "文法・讀解",
+        groups: [
+          { label: "文法1", answers: "3242424331141", pages: [12, 13, 14] },
+          { label: "文法2", answers: "3231", pages: [14] },
+          { label: "文法3", answers: "2134", pages: [15] },
+          { label: "讀解1", answers: "241", pages: [15, 16] },
+          { label: "讀解2", answers: "143", pages: [16, 17] },
+          { label: "讀解3", answers: "13", pages: [17, 18] }
+        ]
+      },
+      {
+        id: "listening",
+        title: "聽解",
+        groups: [
+          { label: "聽解1", answers: "24113322", pages: [1, 2, 3] },
+          { label: "聽解2", answers: "4132124", pages: [3, 4] },
+          { label: "聽解3", answers: "23113", pages: [5, 6] },
+          { label: "聽解4", answers: "12323213", pages: [7] }
+        ]
+      }
+    ]
   }
 ];
+
+const SORTED_EXAMS = [...EXAMS].sort((a, b) => b.id.localeCompare(a.id));
 
 const els = {
   examSelect: document.getElementById("examSelect"),
@@ -288,8 +375,8 @@ const els = {
 };
 
 let state = {
-  examId: EXAMS[0].id,
-  sectionId: EXAMS[0].sections[0].id,
+  examId: SORTED_EXAMS[0].id,
+  sectionId: SORTED_EXAMS[0].sections[0].id,
   questionIndex: 0,
   zoom: 1,
   progress: loadProgress()
@@ -363,7 +450,7 @@ function canGrade(question) {
 }
 
 function init() {
-  EXAMS.forEach((exam) => {
+  SORTED_EXAMS.forEach((exam) => {
     const option = document.createElement("option");
     option.value = exam.id;
     option.textContent = exam.title;
