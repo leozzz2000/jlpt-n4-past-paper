@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>N4 2025 歷屆試題溫習</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <div class="kicker">JLPT N4</div>
+        <h1>2025 歷屆試題溫習</h1>
+      </div>
+      <div class="scorebox" aria-live="polite">
+        <span id="scoreText">0 / 0</span>
+        <span id="scoreRate">0%</span>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <aside class="sidebar">
+        <section class="control-block">
+          <label for="examSelect">試卷</label>
+          <select id="examSelect"></select>
+        </section>
+
+        <section class="control-block">
+          <label for="sectionSelect">部分</label>
+          <select id="sectionSelect"></select>
+        </section>
+
+        <section class="control-block">
+          <div class="row-label">
+            <span>題目</span>
+            <button id="clearProgressBtn" class="ghost-button" type="button">清除進度</button>
+          </div>
+          <div id="questionGrid" class="question-grid" aria-label="題目列表"></div>
+        </section>
+      </aside>
+
+      <section class="paper-area">
+        <div class="paper-toolbar">
+          <div>
+            <div id="questionMeta" class="question-meta"></div>
+            <h2 id="questionTitle"></h2>
+          </div>
+          <div class="toolbar-actions">
+            <button id="prevBtn" class="icon-button" type="button" title="上一題" aria-label="上一題">‹</button>
+            <button id="nextBtn" class="icon-button" type="button" title="下一題" aria-label="下一題">›</button>
+          </div>
+        </div>
+
+        <div id="notice" class="notice" hidden></div>
+
+        <div class="question-panel">
+          <div class="answer-card">
+            <div id="answerStatus" class="answer-status neutral">未作答</div>
+            <div class="choice-row" id="choiceRow"></div>
+            <div class="answer-actions">
+              <button id="revealBtn" class="secondary-button" type="button">顯示正確答案</button>
+              <button id="answersImageBtn" class="secondary-button" type="button">答案原圖</button>
+            </div>
+          </div>
+
+          <div class="viewer-card">
+            <div class="viewer-head">
+              <div id="pageLabel"></div>
+              <div class="zoom-controls">
+                <button id="zoomOutBtn" class="small-button" type="button">-</button>
+                <span id="zoomText">100%</span>
+                <button id="zoomInBtn" class="small-button" type="button">+</button>
+              </div>
+            </div>
+            <div id="pageViewer" class="page-viewer"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="answersDialog">
+      <div class="dialog-head">
+        <h3>答案原圖</h3>
+        <button id="closeDialogBtn" class="icon-button" type="button" aria-label="關閉">×</button>
+      </div>
+      <div id="answersImages" class="answers-images"></div>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
