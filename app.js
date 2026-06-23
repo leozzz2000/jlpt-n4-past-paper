@@ -158,9 +158,9 @@ const EXAMS = [
           { label: "問題2", answers: "44321", pages: [15] },
           {
             label: "問題3",
-            answers: "24122344",
+            answers: "23412234",
             pages: [16, 17],
-            note: "答案原圖此組列 7 個答案；第 20 題按題面人工補為 4（しゅうかん）。"
+            note: "答案原圖此組漏列第 14 題；第 14 題按題面補為 3，後面答案順延。"
           },
           { label: "問題4", answers: "1314", pages: [18, 19] },
           { label: "問題5", answers: "2312", pages: [20, 21] }
