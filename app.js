@@ -4,6 +4,7 @@ const EXAMS = [
     title: "2024 年 7 月 N4",
     pageDir: "assets/pages/2024-07",
     pageCount: 29,
+    audio: { label: "2024 年 7 月 N4 聽力", src: "assets/audio/2024-07-listening.mp3" },
     answersImages: ["assets/answers/2024-07-answer-01.jpg", "assets/answers/2024-07-answer-02.jpg"],
     sections: [
       {
@@ -95,75 +96,6 @@ const EXAMS = [
           { label: "聽解2", answers: "4132142", pages: [] },
           { label: "聽解3", answers: "32321", pages: [] },
           { label: "聽解4", answers: "32131312", pages: [] }
-        ]
-      }
-    ]
-  },
-  {
-    id: "2023-12",
-    title: "2023 年 12 月 N4",
-    pageDir: "",
-    pageCount: 0,
-    answersImages: [
-      "assets/answers/2023-12-answer-01.jpg",
-      "assets/answers/2023-12-answer-02.jpg",
-      "assets/answers/2023-12-answer-03.jpg",
-      "assets/answers/2023-12-answer-04.jpg",
-      "assets/answers/2023-12-answer-05.jpg",
-      "assets/answers/2023-12-answer-06.jpg",
-      "assets/answers/2023-12-answer-07.jpg",
-      "assets/answers/2023-12-answer-08.jpg",
-      "assets/answers/2023-12-answer-09.jpg",
-      "assets/answers/2023-12-answer-10.jpg",
-      "assets/answers/2023-12-answer-11.jpg",
-      "assets/answers/2023-12-answer-12.jpg",
-      "assets/answers/2023-12-answer-13.jpg",
-      "assets/answers/2023-12-answer-14.jpg",
-      "assets/answers/2023-12-answer-15.jpg",
-      "assets/answers/2023-12-answer-16.jpg",
-      "assets/answers/2023-12-answer-17.jpg",
-      "assets/answers/2023-12-answer-18.jpg",
-      "assets/answers/2023-12-answer-19.jpg",
-      "assets/answers/2023-12-answer-20.jpg"
-    ],
-    sections: [
-      {
-        id: "vocab",
-        title: "文字・語彙",
-        notice: "此資料夾只有答案 PDF；題目頁以答案練習模式顯示，選項 1-4 可照常作答。",
-        placeholder: true,
-        groups: [
-          { label: "問題1", answers: "2431423", pages: [] },
-          { label: "問題2", answers: "34132", pages: [] },
-          { label: "問題3", answers: "34243211", pages: [] },
-          { label: "問題4", answers: "4112", pages: [] },
-          { label: "問題5", answers: "3142", pages: [] }
-        ]
-      },
-      {
-        id: "grammar-reading",
-        title: "文法・讀解",
-        notice: "此資料夾只有答案 PDF；原答案表漏列文法1第13題號碼，已按題意與可查到的同題選項補為 2。",
-        placeholder: true,
-        groups: [
-          { label: "文法1", answers: "4212232413142", pages: [] },
-          { label: "文法2", answers: "2341", pages: [] },
-          { label: "文法3", answers: "3142", pages: [] },
-          { label: "讀解1", answers: "441", pages: [] },
-          { label: "讀解2", answers: "123", pages: [] },
-          { label: "讀解3", answers: "32", pages: [] }
-        ]
-      },
-      {
-        id: "listening",
-        title: "聽解",
-        notice: "此資料夾只有答案與聽力原文；題面未提供，選項 1-4 可照常作答。",
-        placeholder: true,
-        groups: [
-          { label: "聽解1", answers: "21322414", pages: [] },
-          { label: "聽解2", answers: "2241332", pages: [] },
-          { label: "聽解3", answers: "23131", pages: [] },
-          { label: "聽解4", answers: "23211213", pages: [] }
         ]
       }
     ]
@@ -264,6 +196,7 @@ const EXAMS = [
     title: "2021 年 7 月 N4",
     pageDir: "assets/pages/2021-07",
     pageCount: 30,
+    audio: { label: "2021 年 7 月 N4 聽力", src: "assets/audio/2021-07-listening.mp3" },
     answersImages: ["assets/answers/2021-07-answer-01.jpg", "assets/answers/2021-07-answer-02.jpg"],
     sections: [
       {
@@ -366,6 +299,7 @@ const els = {
   answersImageBtn: document.getElementById("answersImageBtn"),
   clearProgressBtn: document.getElementById("clearProgressBtn"),
   notice: document.getElementById("notice"),
+  audioPanel: document.getElementById("audioPanel"),
   zoomOutBtn: document.getElementById("zoomOutBtn"),
   zoomInBtn: document.getElementById("zoomInBtn"),
   zoomText: document.getElementById("zoomText"),
@@ -527,6 +461,7 @@ function renderAll() {
   if (state.questionIndex >= questions.length) state.questionIndex = 0;
   renderQuestionGrid();
   renderCurrentQuestion();
+  renderAudioPanel();
   renderScore();
 }
 
@@ -586,6 +521,30 @@ function renderCurrentQuestion() {
 
   renderAnswerStatus();
   renderPages();
+}
+
+function renderAudioPanel() {
+  const exam = currentExam();
+  const section = currentSection();
+  const audio = section.id === "listening" ? exam.audio : null;
+  els.audioPanel.replaceChildren();
+
+  if (!audio) {
+    els.audioPanel.hidden = true;
+    return;
+  }
+
+  const label = document.createElement("div");
+  label.className = "audio-label";
+  label.textContent = audio.label;
+
+  const player = document.createElement("audio");
+  player.controls = true;
+  player.preload = "metadata";
+  player.src = audio.src;
+
+  els.audioPanel.append(label, player);
+  els.audioPanel.hidden = false;
 }
 
 function renderAnswerStatus(forceReveal = false) {

@@ -419,6 +419,29 @@ select {
   font-weight: 700;
 }
 
+.audio-panel {
+  display: grid;
+  grid-template-columns: minmax(160px, auto) minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.audio-label {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.audio-panel audio {
+  width: 100%;
+  height: 34px;
+}
+
 dialog {
   width: min(980px, calc(100vw - 30px));
   max-height: calc(100vh - 30px);
@@ -507,6 +530,10 @@ dialog::backdrop {
 
   .paper-toolbar {
     align-items: flex-start;
+  }
+
+  .audio-panel {
+    grid-template-columns: 1fr;
   }
 
   .page-viewer {
