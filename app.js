@@ -340,16 +340,12 @@ const els = {
   prevBtn: document.getElementById("prevBtn"),
   nextBtn: document.getElementById("nextBtn"),
   revealBtn: document.getElementById("revealBtn"),
-  answersImageBtn: document.getElementById("answersImageBtn"),
   clearProgressBtn: document.getElementById("clearProgressBtn"),
   notice: document.getElementById("notice"),
   audioPanel: document.getElementById("audioPanel"),
   zoomOutBtn: document.getElementById("zoomOutBtn"),
   zoomInBtn: document.getElementById("zoomInBtn"),
   zoomText: document.getElementById("zoomText"),
-  answersDialog: document.getElementById("answersDialog"),
-  answersImages: document.getElementById("answersImages"),
-  closeDialogBtn: document.getElementById("closeDialogBtn"),
   themeToggleBtn: document.getElementById("themeToggleBtn")
 };
 
@@ -482,8 +478,6 @@ function bindEvents() {
   els.prevBtn.addEventListener("click", () => moveQuestion(-1));
   els.nextBtn.addEventListener("click", () => moveQuestion(1));
   els.revealBtn.addEventListener("click", revealAnswer);
-  els.answersImageBtn.addEventListener("click", openAnswersDialog);
-  els.closeDialogBtn.addEventListener("click", () => els.answersDialog.close());
   els.themeToggleBtn.addEventListener("click", toggleTheme);
 
   els.zoomOutBtn.addEventListener("click", () => {
@@ -746,18 +740,6 @@ function revealAnswer() {
 
 function moveQuestion(delta) {
   selectQuestion(state.questionIndex + delta);
-}
-
-function openAnswersDialog() {
-  const exam = currentExam();
-  els.answersImages.replaceChildren();
-  exam.answersImages.forEach((src, index) => {
-    const image = document.createElement("img");
-    image.src = src;
-    image.alt = `${exam.title} 答案原圖 ${index + 1}`;
-    els.answersImages.append(image);
-  });
-  els.answersDialog.showModal();
 }
 
 init();
