@@ -170,11 +170,11 @@ const EXAMS = [
         id: "grammar-reading",
         title: "文法・讀解",
         groups: [
-          { label: "文法1", answers: "2133141424312", pages: [1, 2, 3, 4] },
-          { label: "文法2", answers: "3312", pages: [5] },
-          { label: "文法3", answers: "1432", pages: [6, 7] },
-          { label: "讀解1", answers: "313", pages: [8, 9, 10] },
-          { label: "讀解2", answers: "144", pages: [11] },
+          { label: "文法1", answers: "2133141424312", pages: [1, 2] },
+          { label: "文法2", answers: "3312", pages: [3, 4] },
+          { label: "文法3", answers: "1432", pages: [5, 6] },
+          { label: "讀解1", answers: "313", pages: [7, 8, 9] },
+          { label: "讀解2", answers: "144", pages: [10, 11] },
           { label: "讀解3", answers: "22", pages: [12, 13] }
         ]
       },
