@@ -292,7 +292,7 @@ const EXAMS = [
           { label: "問題1", answers: "114223124", pages: [33, 34, 35] },
           { label: "問題2", answers: "143441", pages: [36] },
           { label: "問題3", answers: "432243123", pages: [36, 37] },
-          { label: "問題4", answers: "32132", pages: [38, 39] },
+          { label: "問題4", answers: "32132", pages: [38, 39], pageOverrides: { 1: [38], 2: [38], 3: [39], 4: [39], 5: [39] } },
           { label: "問題5", answers: "43412", pages: [39, 40, 41, 42] }
         ]
       },
