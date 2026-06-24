@@ -307,12 +307,12 @@ const EXAMS = [
         id: "grammar-reading",
         title: "文法・讀解",
         groups: [
-          { label: "文法1", answers: "341242312411342", pages: [1, 2, 3, 4] },
-          { label: "文法2", answers: "32433", pages: [5] },
-          { label: "文法3", answers: "23214", pages: [5, 6] },
-          { label: "讀解1", answers: "4323", pages: [7, 8] },
-          { label: "讀解2", answers: "2441", pages: [25, 26, 27, 28] },
-          { label: "讀解3", answers: "32", pages: [29, 30, 31, 32] }
+          { label: "文法1", answers: "341242312411342", pages: [2], pageOverrides: { 7: [3], 8: [3], 9: [3], 10: [3], 11: [3], 12: [3], 13: [3], 14: [4], 15: [4] } },
+          { label: "文法2", answers: "32433", pages: [5], pageOverrides: { 3: [6], 4: [6], 5: [6] } },
+          { label: "文法3", answers: "23214", pages: [7, 8] },
+          { label: "讀解1", answers: "4323", pages: [25], pageOverrides: { 2: [26], 3: [27], 4: [28] } },
+          { label: "讀解2", answers: "2441", pages: [29], pageOverrides: { 3: [30], 4: [30] } },
+          { label: "讀解3", answers: "32", pages: [31, 32] }
         ]
       },
       {
