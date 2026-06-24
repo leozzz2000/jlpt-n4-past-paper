@@ -276,6 +276,50 @@ const EXAMS = [
         ]
       }
     ]
+  },
+  {
+    id: "2017-07",
+    title: "2017 年 7 月 N4",
+    pageDir: "assets/pages/2017-07",
+    pageCount: 42,
+    audio: { label: "2017 年 7 月 N4 聽力", src: "assets/audio/2017-07-listening.mp3" },
+    answersImages: ["assets/answers/2017-07-answer-01.jpg", "assets/answers/2017-07-answer-02.jpg"],
+    sections: [
+      {
+        id: "vocab",
+        title: "文字・語彙",
+        groups: [
+          { label: "問題1", answers: "114223124", pages: [33, 34, 35] },
+          { label: "問題2", answers: "143441", pages: [36] },
+          { label: "問題3", answers: "432243123", pages: [36, 37] },
+          { label: "問題4", answers: "32132", pages: [38, 39] },
+          { label: "問題5", answers: "43412", pages: [39, 40, 41, 42] }
+        ]
+      },
+      {
+        id: "grammar-reading",
+        title: "文法・讀解",
+        groups: [
+          { label: "文法1", answers: "341242312411342", pages: [1, 2, 3, 4] },
+          { label: "文法2", answers: "32433", pages: [5] },
+          { label: "文法3", answers: "23214", pages: [5, 6] },
+          { label: "讀解1", answers: "4323", pages: [7, 8] },
+          { label: "讀解2", answers: "2441", pages: [25, 26, 27, 28] },
+          { label: "讀解3", answers: "32", pages: [29, 30, 31, 32] }
+        ]
+      },
+      {
+        id: "listening",
+        title: "聽解",
+        notice: "資料夾有 2017 年 7 月 N4 聽力 MP3；播放器可直接播完整聽解音頻。",
+        groups: [
+          { label: "聽解1", answers: "14343221", pages: [9, 10, 11, 12, 13, 14] },
+          { label: "聽解2", answers: "4233123", pages: [15, 16, 17, 18, 19] },
+          { label: "聽解3", answers: "12121", pages: [20, 21, 22, 23] },
+          { label: "聽解4", answers: "23212331", pages: [24] }
+        ]
+      }
+    ]
   }
 ];
 
