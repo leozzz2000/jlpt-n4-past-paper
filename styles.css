@@ -522,6 +522,23 @@ body.dark-mode .audio-panel {
   background: var(--panel);
 }
 
+.site-footer {
+  padding: 8px 14px 12px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.site-footer a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
 .audio-label {
   color: var(--muted);
   font-size: 13px;

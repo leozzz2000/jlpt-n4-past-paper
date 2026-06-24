@@ -558,7 +558,7 @@ function renderQuestionGrid() {
   });
 }
 
-function renderCurrentQuestion() {
+function renderCurrentQuestion({ refreshPages = true } = {}) {
   const question = currentQuestion();
   const progress = state.progress[progressKey(question)];
   els.questionMeta.textContent = `${currentExam().title} / ${question.sectionTitle} / ${question.groupLabel}`;
@@ -588,7 +588,7 @@ function renderCurrentQuestion() {
   });
 
   renderAnswerStatus();
-  renderPages();
+  if (refreshPages) renderPages();
 }
 
 function renderAudioPanel() {
@@ -704,7 +704,9 @@ function submitAnswer(choice) {
   const question = currentQuestion();
   state.progress[progressKey(question)] = { choice, at: new Date().toISOString() };
   saveProgress();
-  renderAll();
+  renderQuestionGrid();
+  renderCurrentQuestion({ refreshPages: false });
+  renderScore();
 }
 
 function revealAnswer() {
