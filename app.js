@@ -428,7 +428,9 @@ function applyTheme(theme) {
   const isDark = theme === "dark";
   document.body.classList.toggle("dark-mode", isDark);
   els.themeToggleBtn.setAttribute("aria-pressed", String(isDark));
-  els.themeToggleBtn.textContent = isDark ? "日間" : "護眼";
+  els.themeToggleBtn.textContent = isDark ? "☀ Light" : "☾ Dark";
+  els.themeToggleBtn.title = isDark ? "Switch to light mode" : "Switch to dark mode";
+  els.themeToggleBtn.setAttribute("aria-label", els.themeToggleBtn.title);
   document.querySelector('meta[name="theme-color"]')?.setAttribute("content", isDark ? "#151a18" : "#eef3f4");
 }
 
