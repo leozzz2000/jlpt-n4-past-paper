@@ -14,7 +14,7 @@ const EXAMS = [
           { label: "問題1", answers: "4332421", pages: [2] },
           { label: "問題2", answers: "21413", pages: [3] },
           { label: "問題3", answers: "22143341", pages: [3, 4] },
-          { label: "問題4", answers: "4213", pages: [5, 6] },
+          { label: "問題4", answers: "4213", pages: [5, 6], pageOverrides: { 1: [4], 2: [4] } },
           { label: "問題5", answers: "3124", pages: [6] }
         ]
       },
@@ -375,7 +375,7 @@ function buildQuestions(section) {
         label: `第 ${pdfNumber} 題`,
         detailLabel: `${group.label}-${groupNumber}`,
         answer,
-        pages: group.pages,
+        pages: group.pageOverrides?.[groupNumber] || group.pages,
         placeholder: group.placeholder || section.placeholder || false,
         note: group.note || section.notice || ""
       });
