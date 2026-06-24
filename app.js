@@ -289,11 +289,18 @@ const EXAMS = [
         id: "vocab",
         title: "文字・語彙",
         groups: [
-          { label: "問題1", answers: "114223124", pages: [33, 34, 35] },
+          { label: "問題1", answers: "114223124", pages: [34], pageOverrides: { 9: [35] } },
           { label: "問題2", answers: "143441", pages: [36] },
-          { label: "問題3", answers: "432243123", pages: [36, 37] },
-          { label: "問題4", answers: "32132", pages: [38, 39], pageOverrides: { 1: [38], 2: [38], 3: [39], 4: [39], 5: [39] } },
-          { label: "問題5", answers: "43412", pages: [39, 40, 41, 42] }
+          {
+            label: "問題3",
+            answers: "432243123",
+            pages: [37],
+            pageOverrides: { 8: [38], 9: [38] },
+            pageKeys: { 3: "p37-mid", 4: "p37-mid", 5: "p37-mid", 6: "p37-low", 7: "p37-low", 8: "p38", 9: "p38" },
+            pageFocuses: { 3: 0.28, 4: 0.28, 5: 0.28, 6: 0.54, 7: 0.54 }
+          },
+          { label: "問題4", answers: "32132", pages: [39], pageOverrides: { 4: [40], 5: [40] } },
+          { label: "問題5", answers: "43412", pages: [41], pageOverrides: { 4: [42], 5: [42] } }
         ]
       },
       {
@@ -376,6 +383,8 @@ function buildQuestions(section) {
         detailLabel: `${group.label}-${groupNumber}`,
         answer,
         pages: group.pageOverrides?.[groupNumber] || group.pages,
+        pageKey: group.pageKeys?.[groupNumber] || "",
+        pageFocus: group.pageFocuses?.[groupNumber] || 0,
         placeholder: group.placeholder || section.placeholder || false,
         note: group.note || section.notice || ""
       });
@@ -673,6 +682,8 @@ function renderPages() {
     image.loading = "lazy";
     els.pageViewer.append(image);
   });
+
+  applyPageFocus(question);
 }
 
 function renderScore() {
@@ -704,7 +715,23 @@ function submitAnswer(choice) {
 
 function paperSignature(question) {
   const pages = question.pages && question.pages.length ? question.pages.join(",") : "no-pages";
-  return `${state.examId}:${state.sectionId}:${question.placeholder ? "placeholder" : "paper"}:${pages}`;
+  return `${state.examId}:${state.sectionId}:${question.placeholder ? "placeholder" : "paper"}:${pages}:${question.pageKey || ""}`;
+}
+
+function applyPageFocus(question) {
+  if (!question.pageFocus) return;
+  const scrollToFocus = () => {
+    const firstPage = els.pageViewer.querySelector(".paper-page");
+    if (!firstPage) return;
+    const maxScroll = Math.max(0, els.pageViewer.scrollHeight - els.pageViewer.clientHeight);
+    const target = Math.min(maxScroll, Math.max(0, firstPage.offsetTop + firstPage.clientHeight * question.pageFocus));
+    els.pageViewer.scrollTop = target;
+  };
+
+  const firstPage = els.pageViewer.querySelector(".paper-page");
+  if (firstPage && !firstPage.complete) firstPage.addEventListener("load", scrollToFocus, { once: true });
+  requestAnimationFrame(scrollToFocus);
+  setTimeout(scrollToFocus, 120);
 }
 
 function selectQuestion(index) {
