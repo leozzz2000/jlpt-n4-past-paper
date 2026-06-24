@@ -550,8 +550,7 @@ function renderQuestionGrid() {
     }
 
     button.addEventListener("click", () => {
-      state.questionIndex = index;
-      renderAll();
+      selectQuestion(index);
     });
 
     els.questionGrid.append(button);
@@ -709,6 +708,30 @@ function submitAnswer(choice) {
   renderScore();
 }
 
+function paperSignature(question) {
+  const pages = question.pages && question.pages.length ? question.pages.join(",") : "no-pages";
+  return `${state.examId}:${state.sectionId}:${question.placeholder ? "placeholder" : "paper"}:${pages}`;
+}
+
+function selectQuestion(index) {
+  const questions = currentQuestions();
+  const nextIndex = Math.min(questions.length - 1, Math.max(0, index));
+  const previousQuestion = currentQuestion();
+  const nextQuestion = questions[nextIndex];
+  const keepPaperPosition = previousQuestion && nextQuestion && paperSignature(previousQuestion) === paperSignature(nextQuestion);
+
+  state.questionIndex = nextIndex;
+
+  if (!keepPaperPosition) {
+    renderAll();
+    return;
+  }
+
+  renderQuestionGrid();
+  renderCurrentQuestion({ refreshPages: false });
+  renderScore();
+}
+
 function revealAnswer() {
   renderAnswerStatus(true);
   const question = currentQuestion();
@@ -722,9 +745,7 @@ function revealAnswer() {
 }
 
 function moveQuestion(delta) {
-  const questions = currentQuestions();
-  state.questionIndex = Math.min(questions.length - 1, Math.max(0, state.questionIndex + delta));
-  renderAll();
+  selectQuestion(state.questionIndex + delta);
 }
 
 function openAnswersDialog() {
