@@ -122,12 +122,12 @@ const EXAMS = [
         id: "grammar-reading",
         title: "文法・讀解",
         groups: [
-          { label: "文法1", answers: "4332442121234", pages: [9, 10, 11, 12, 13] },
-          { label: "文法2", answers: "3411", pages: [14, 15] },
-          { label: "文法3", answers: "1423", pages: [16, 17] },
-          { label: "讀解4", answers: "342", pages: [18, 19, 20] },
-          { label: "讀解5", answers: "132", pages: [21, 22] },
-          { label: "讀解6", answers: "12", pages: [22, 23] }
+          { label: "文法1", answers: "4332442121234", pages: [9, 10, 11] },
+          { label: "文法2", answers: "3411", pages: [12, 13] },
+          { label: "文法3", answers: "1423", pages: [14, 15] },
+          { label: "讀解4", answers: "342", pages: [16, 17, 18] },
+          { label: "讀解5", answers: "132", pages: [19, 20] },
+          { label: "讀解6", answers: "12", pages: [21, 22] }
         ]
       },
       {
