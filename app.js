@@ -349,7 +349,8 @@ const els = {
   zoomText: document.getElementById("zoomText"),
   answersDialog: document.getElementById("answersDialog"),
   answersImages: document.getElementById("answersImages"),
-  closeDialogBtn: document.getElementById("closeDialogBtn")
+  closeDialogBtn: document.getElementById("closeDialogBtn"),
+  themeToggleBtn: document.getElementById("themeToggleBtn")
 };
 
 let state = {
@@ -419,6 +420,24 @@ function saveProgress() {
   localStorage.setItem("n4-2025-review-progress", JSON.stringify(state.progress));
 }
 
+function loadTheme() {
+  return localStorage.getItem("n4-review-theme") || "light";
+}
+
+function applyTheme(theme) {
+  const isDark = theme === "dark";
+  document.body.classList.toggle("dark-mode", isDark);
+  els.themeToggleBtn.setAttribute("aria-pressed", String(isDark));
+  els.themeToggleBtn.textContent = isDark ? "日間" : "護眼";
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", isDark ? "#151a18" : "#eef3f4");
+}
+
+function toggleTheme() {
+  const nextTheme = document.body.classList.contains("dark-mode") ? "light" : "dark";
+  localStorage.setItem("n4-review-theme", nextTheme);
+  applyTheme(nextTheme);
+}
+
 function pagePath(exam, page) {
   return `${exam.pageDir}/page-${String(page).padStart(2, "0")}.jpg`;
 }
@@ -428,6 +447,8 @@ function canGrade(question) {
 }
 
 function init() {
+  applyTheme(loadTheme());
+
   SORTED_EXAMS.forEach((exam) => {
     const option = document.createElement("option");
     option.value = exam.id;
@@ -461,6 +482,7 @@ function bindEvents() {
   els.revealBtn.addEventListener("click", revealAnswer);
   els.answersImageBtn.addEventListener("click", openAnswersDialog);
   els.closeDialogBtn.addEventListener("click", () => els.answersDialog.close());
+  els.themeToggleBtn.addEventListener("click", toggleTheme);
 
   els.zoomOutBtn.addEventListener("click", () => {
     state.zoom = Math.max(0.65, Math.round((state.zoom - 0.1) * 10) / 10);

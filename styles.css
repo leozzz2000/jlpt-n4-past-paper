@@ -15,6 +15,22 @@
   font-family: "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
 }
 
+body.dark-mode {
+  color-scheme: dark;
+  --ink: #d7ddd9;
+  --muted: #a8b2ad;
+  --line: #3d4845;
+  --panel: #1b211f;
+  --soft: #242d2a;
+  --accent: #72b8ac;
+  --accent-dark: #a5d8cf;
+  --accent-soft: #203a36;
+  --warn: #d6a15f;
+  --ok: #7bc995;
+  --bad: #e09595;
+  --shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -24,6 +40,10 @@ body {
   min-height: 100vh;
   background: #eef3f4;
   color: var(--ink);
+}
+
+body.dark-mode {
+  background: #151a18;
 }
 
 button,
@@ -40,6 +60,10 @@ select {
   gap: 18px;
   border-bottom: 1px solid var(--line);
   background: #fbfcfc;
+}
+
+body.dark-mode .topbar {
+  background: #171d1b;
 }
 
 .topbar > div:first-child {
@@ -79,6 +103,29 @@ h1 {
   gap: 8px;
   text-align: right;
   border-radius: 8px;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-toggle {
+  min-height: 29px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0 10px;
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.theme-toggle[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-dark);
 }
 
 #scoreText {
@@ -144,6 +191,17 @@ select {
   color: var(--ink);
 }
 
+body.dark-mode select,
+body.dark-mode .q-chip,
+body.dark-mode .icon-button,
+body.dark-mode .small-button,
+body.dark-mode .secondary-button,
+body.dark-mode .ghost-button,
+body.dark-mode .choice-button {
+  background: #202724;
+  color: var(--ink);
+}
+
 .question-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -177,6 +235,18 @@ select {
 .q-chip.wrong {
   border-color: rgba(185, 28, 28, 0.42);
   background: #fff1f1;
+}
+
+body.dark-mode .q-chip.correct,
+body.dark-mode .answer-status.correct,
+body.dark-mode .choice-button.correct {
+  background: #1e3b2a;
+}
+
+body.dark-mode .q-chip.wrong,
+body.dark-mode .answer-status.wrong,
+body.dark-mode .choice-button.wrong {
+  background: #3b2424;
 }
 
 .paper-area {
@@ -368,6 +438,10 @@ select {
   background: #dfe6e7;
 }
 
+body.dark-mode .page-viewer {
+  background: #111513;
+}
+
 .paper-page {
   width: var(--page-width);
   max-width: none;
@@ -376,6 +450,13 @@ select {
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+}
+
+body.dark-mode .paper-page,
+body.dark-mode .answers-images img {
+  filter: brightness(0.72) contrast(0.9) sepia(0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
 }
 
 .placeholder-page {
@@ -419,6 +500,12 @@ select {
   font-weight: 700;
 }
 
+body.dark-mode .notice {
+  color: #e1bf8b;
+  background: #2d261b;
+  border-color: #5f4525;
+}
+
 .audio-panel {
   display: grid;
   grid-template-columns: minmax(160px, auto) minmax(0, 1fr);
@@ -429,6 +516,10 @@ select {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fff;
+}
+
+body.dark-mode .audio-panel {
+  background: var(--panel);
 }
 
 .audio-label {
@@ -453,6 +544,10 @@ dialog {
 
 dialog::backdrop {
   background: rgba(15, 23, 42, 0.45);
+}
+
+body.dark-mode dialog::backdrop {
+  background: rgba(0, 0, 0, 0.62);
 }
 
 .dialog-head {
